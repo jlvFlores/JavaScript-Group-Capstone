@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
-
-import './style.css';
+import 'flowbite';
+import './output.css';
 import Logo from './assets/images/pokemon-logo.svg';
 import heartReg from './assets/icons/heart-regular.svg';
 
@@ -24,7 +24,7 @@ const displayList = () => {
       <div class="card">
         <div class="details">
           <img class="sprite" src="${pokemon.imageUrl}" alt="${pokemon.name}">
-          <div class="name">
+          <div class="name ">
             <p>${pokemon.name}</p>
             <img class="like-btn" src="${heartReg}" alt="heart">
           </div>
