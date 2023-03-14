@@ -1,15 +1,40 @@
-#logo {
-  width: 10rem;
+@font-face {
+  font-family: "Lato";
+  src: url('./assets/font/Lato-Light.ttf') format('truetype');
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: lightgray;
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #eeeefe;
 }
 
 li {
   list-style-type: none;
-  margin: 0 1rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #fff6a4;
+  justify-content: space-between;
+}
+
+.nav-list {
+  margin-right: 5rem;
+  font-weight: bold;
+}
+
+.logo {
+  width: 10rem;
+}
+
+hr.hline {
+  border: 1px solid #292929;
+}
+
+footer {
+  background-color: #fff6a4;
+  padding: 5px;
+  font-style: italic;
+  font-weight: bold;
 }
