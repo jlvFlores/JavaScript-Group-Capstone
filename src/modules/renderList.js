@@ -1,6 +1,6 @@
+import * as flowbite from 'flowbite';
 import heartReg from '../assets/icons/heart-regular.svg';
 import xMark from '../assets/icons/xmark-solid.svg';
-import 'flowbite';
 
 const renderList = (array) => {
   const listContainer = document.getElementById('list');
@@ -68,7 +68,7 @@ const renderList = (array) => {
   const commentBtn = document.querySelectorAll('.comment-btn');
   const closeBtn = document.querySelectorAll('.close-btn');
   for (let i = 0; i < commentBtn.length; i += 1) {
-    const modal = new Modal(popupWindow[i], options);
+    const modal = new flowbite.Modal(popupWindow[i], options);
     commentBtn[i].addEventListener('click', () => {
       modal.show();
       for (let i = 0; i < commentBtn.length; i += 1) {
