@@ -1,17 +1,32 @@
+/* eslint-disable camelcase */
+
 import * as flowbite from 'flowbite';
 import heartReg from '../assets/icons/heart-regular.svg';
 import xMark from '../assets/icons/xmark-solid.svg';
+import postLike from './postMethods.js';
+import getLikes from './getMethods.js';
 
-const renderList = (array) => {
+const renderList = async (array) => {
   const listContainer = document.getElementById('list');
+  const likes = await getLikes();
+
   array.forEach((pokemon) => {
+    let itemId = 0;
+    let itemLikes = 0;
+    if (likes.find(({ item_id }) => item_id === pokemon.id)) {
+      itemId = likes.find(({ item_id }) => item_id === pokemon.id);
+      itemLikes = itemId.likes;
+    }
     listContainer.insertAdjacentHTML('beforeend', `
         <div class="card">
           <div class="details">
             <img class="sprite" src="${pokemon.imageUrl}" alt="${pokemon.name}">
-            <div class="name ">
+            <div class="name">
               <p>${pokemon.name}</p>
-              <img class="like-btn" src="${heartReg}" alt="heart">
+              <div class="like-con">
+                <img class="like-btn" src="${heartReg}" alt="heart" data-id="${pokemon.id}">
+                <p class="likes">${itemLikes}</p>
+              </div>
             </div>
             <button data-modal-target="staticModal${pokemon.id}" data-modal-show="staticModal${pokemon.id}" class="comment-btn block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                 Comments
@@ -67,6 +82,7 @@ const renderList = (array) => {
   const popupWindow = document.querySelectorAll('.popup-window');
   const commentBtn = document.querySelectorAll('.comment-btn');
   const closeBtn = document.querySelectorAll('.close-btn');
+  const likeBtn = document.querySelectorAll('.like-btn');
   for (let i = 0; i < commentBtn.length; i += 1) {
     const modal = new flowbite.Modal(popupWindow[i], options);
     commentBtn[i].addEventListener('click', () => {
@@ -78,6 +94,19 @@ const renderList = (array) => {
       }
     });
   }
+
+  likeBtn.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = +btn.dataset.id;
+      const likeCounter = btn.nextElementSibling;
+
+      await postLike(id);
+      const updatedLikes = await getLikes();
+
+      const item = updatedLikes.find(({ item_id }) => item_id === id);
+      likeCounter.innerHTML = await item.likes;
+    });
+  });
 };
 
 export default renderList;
