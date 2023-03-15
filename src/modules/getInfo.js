@@ -23,11 +23,24 @@ const getInfo = async (array) => {
     pokemon.height = info.height;
     pokemon.weight = info.weight;
     pokemon.imageUrl = info.sprites.front_default;
-    pokemon.evolutionChain = [
-      evoChain.chain.species.name,
-      evoChain.chain.evolves_to[0].species.name,
-      evoChain.chain.evolves_to[0].evolves_to[0].species.name,
-    ];
+    if (evoChain.chain.evolves_to[0]) {
+      if (evoChain.chain.evolves_to[0].evolves_to[0]) {
+        pokemon.evolutionChain = [
+          evoChain.chain.species.name,
+          evoChain.chain.evolves_to[0],
+          evoChain.chain.evolves_to[0].evolves_to[0],
+        ];
+      } else {
+        pokemon.evolutionChain = [
+          evoChain.chain.species.name,
+          evoChain.chain.evolves_to[0],
+        ];
+      }
+    } else {
+      pokemon.evolutionChain = [
+        evoChain.chain.species.name,
+      ];
+    }
     counter += 1;
     if (counter === array.length) {
       renderList(array);
