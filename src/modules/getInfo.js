@@ -27,13 +27,13 @@ const getInfo = async (array) => {
       if (evoChain.chain.evolves_to[0].evolves_to[0]) {
         pokemon.evolutionChain = [
           evoChain.chain.species.name,
-          evoChain.chain.evolves_to[0],
-          evoChain.chain.evolves_to[0].evolves_to[0],
+          evoChain.chain.evolves_to[0].species.name,
+          evoChain.chain.evolves_to[0].evolves_to[0].species.name,
         ];
       } else {
         pokemon.evolutionChain = [
           evoChain.chain.species.name,
-          evoChain.chain.evolves_to[0],
+          evoChain.chain.evolves_to[0].species.name,
         ];
       }
     } else {
