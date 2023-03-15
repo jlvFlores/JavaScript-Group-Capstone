@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Lato";
   src: url('./assets/font/Lato-Light.ttf') format('truetype');
@@ -5,22 +9,24 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #eeeefe;
 }
 
 .logo {
-  width: 10rem;
+  width: 15rem;
 }
 
 nav {
   display: flex;
   align-items: center;
-  background-color: #fff6a4;
-  justify-content: space-between;
+  background-color: #fde68a;
+  margin: 10px 4px 4px 10px;
+  border-radius: 10px;
+  opacity: 85%;
+  padding: 10px;
 }
 
 .nav-list {
-  margin-right: 5rem;
+  margin-left: 1rem;
   font-weight: bold;
 }
 
@@ -33,23 +39,20 @@ li {
   text-underline-offset: 4px;
 }
 
-hr.hline {
-  border: 1px solid #292929;
-}
-
 #list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 0.5rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem;
 }
 
 .card {
   width: 28vw;
   padding: 0.25rem;
   border-radius: 8px;
-  background-color: #ffe165;
+  background-color: #fde68a;
+  opacity: 90%;
 }
 
 .details {
@@ -63,9 +66,8 @@ hr.hline {
 }
 
 .sprite {
-  background-color: #292929;
   width: 85%;
-  max-width: 150px;
+  min-width: 100px;
 }
 
 .name {
@@ -80,8 +82,12 @@ hr.hline {
 }
 
 footer {
-  background-color: #fff6a4;
   padding: 5px;
   font-style: italic;
   font-weight: bold;
+  background-color: #fde68a;
+  height: 50px;
+  margin: 10px 4px 4px 10px;
+  border-radius: 10px;
+  opacity: 80%;
 }
