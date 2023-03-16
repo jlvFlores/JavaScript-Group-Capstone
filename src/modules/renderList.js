@@ -13,7 +13,7 @@ import addComment from './addcoments.js';
 const renderList = async (array) => {
   const listContainer = document.getElementById('list');
   const likes = await getLikes();
-
+  const commentsCache = {};
   array.forEach((pokemon) => {
     let itemLikes = 0;
     const itemId = likes.find(({ item_id }) => item_id === pokemon.id);
@@ -124,7 +124,7 @@ const renderList = async (array) => {
     const commentsCountElement = document.getElementById(`comments${pokemon.id}`);
     const renderComments = (comments) => {
       commentList.innerHTML = '';
-      if (comments.length === 0) {
+      if (!Array.isArray(comments) || comments.length === 0) {
         commentList.innerHTML = '<li>No comments yet.</li>';
       } else {
         comments.forEach((comment) => {
@@ -156,10 +156,13 @@ const renderList = async (array) => {
     const commentBtn = document.querySelectorAll('.comment-btn');
     for (let i = 0; i < commentBtn.length; i += 1) {
       commentBtn[i].addEventListener('click', () => {
-        fetchComments(pokemon.id).then((data) => {
-          renderComments(data);
-          updateCommentsCount(pokemon.id);
-        });
+        if (!commentsCache[pokemon.id]) {
+          fetchComments(pokemon.id).then((data) => {
+            renderComments(data);
+            updateCommentsCount(pokemon.id);
+            commentsCache[pokemon.id] = data;
+          });
+        }
       });
     }
   });
