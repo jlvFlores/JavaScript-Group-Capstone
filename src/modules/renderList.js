@@ -61,20 +61,31 @@ const renderList = async (array) => {
           </div>
         </div>
       </div>
-      <div id="staticModal${pokemon.id}" data-modal-backdrop="static" tabindex="${pokemon.id}" aria-hidden="true" class="fixed popup-window inset-0 z-50 items-center justify-center hidden">
-        <div class="bg-yellow-200/90 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-4 w-full sm:w-5/6 md:w-1/2 lg:w-2/5 xl:w-1/3 max-h-screen h-[93vh]">
+      <div id="staticModal${pokemon.id}" data-modal-backdrop="static" tabindex="${pokemon.id}" aria-hidden="true" class="fixed popup-window inset-0 z-50 hidden">
+        <div class="bg-yellow-200/90 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-4 w-full sm:w-5/6 md:w-1/2 lg:w-2/5 lg:mt-2.5 max-h-screen h-[93vh]">
           <div class="flex justify-end py-2 px-4">
             <button type="button" class="close-btn" data-modal-hide="staticModal${pokemon.id}">
               <img class="w-5 h-5 relative right-[-8px]" src="${xMark}" alt="closebutton">
             </button>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 overflow-y-auto">
-            <div class="flex justify-center items-center">
-              <img class="w-full max-w-[250px] mx-auto top-[-30px] relative" src="${pokemon.imageUrl}" alt="${pokemon.name}">
+            <div class="flex flex-col justify-center items-center">
+              <p class="text-2xl font-bold text-yellow-800 fixed top-[40px] md:top-[55px]">${pokemon.name}</p>
+              <img class="w-full max-w-[250px] mx-auto relative top-[-20px]" src="${pokemon.imageUrl}" alt="${pokemon.name}">
+              <form id="comment-form" class="mt-4 relative top-[160px] md:top-[-55px] right-[-90px] md:right-[-15px]">
+                <div class="mb-1">
+                  <input type="text" id="comment-name" name="name" class="form-input" placeholder="Your Name" required>
+                </div>
+                <div class="mb-4">
+                  <textarea id="comment-text" name="text" class="form-textarea" placeholder="Your insights" required></textarea>
+                </div>
+                <div class="flex justify-end relative right-[22px] md:right-[43px] top-[-16px]">
+                  <button type="submit" class="btn btn-primary">Comment</button>
+                </div>
+              </form>
             </div>
-            <div class="space-y-4 relative bottom-[80px]">
+            <div class="space-y-4 relative top-[-215px] md:top-[10px]">
               <div class="space-y-2">
-                <p class="text-2xl font-bold text-yellow-800 fixed left-[130px] top-[55px]">${pokemon.name}</p>
                 <div class="flex items-center">
                   <p class="font-bold text-yellow-800 mr-2">Pokedex ID:</p>
                   <p class="font-medium">${pokemon.id}</p>
@@ -88,26 +99,20 @@ const renderList = async (array) => {
                   `).join('')}
                 </div>
               </div>
-              <div class="space-y-2">
-                <p class="font-bold text-yellow-800">Evolution Chain:</p>
+              <div class="mt-6">
+                <p class="text-lg font-bold text-yellow-800 mb-2">Evolution Chain:</p>
                 <div class="flex flex-wrap">
                   ${pokemon.evolutionChain.map((evolutionName) => `
-                    <span class="text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded bg-blue-500 text-blue-200">${evolutionName}</span>
-                  `).join('')}
+                    <span class="text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded ${pokemon.name === evolutionName ? 'bg-blue-500 text-blue-100' : 'bg-blue-200 text-blue-500'}">${evolutionName}</span>
+                        `).join('')}
                 </div>
               </div>
               <div class="space-y-2">
                 <p class="font-bold text-yellow-800">Comments</p>
-                <div id="comments${pokemon.id}"></div>
-                <ul class="list-disc pl-4" id="comment-list">
-                </ul>
-                <form id="comment-form" class="mt-4">
-                  <label for="comment-name" class="font-bold text-yellow-800">Name:</label>
-                  <input type="text" id="comment-name" name="name" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-50" required>
-                  <label for="comment-text" class="font-bold text-yellow-800 mt-2">Comment:</label>
-                  <textarea id="comment-text" name="text" class="block w-full border-gray-300 rounded-md shadow-sm focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-50" required></textarea>
-                  <button type="submit" class="mt-2 px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-white hover:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-200 focus:ring-opacity-50">Post Comment</button>
-                </form>
+                <div class="flex flex-row">
+                    <ul class="list-disc pl-4" id="comment-list"></ul>
+                    <div class="pl-4 relative top-[-33px] right-[65px]" id="comments${pokemon.id}"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -118,7 +123,7 @@ const renderList = async (array) => {
     const commentList = modalCard.querySelector('#comment-list');
     const commentForm = modalCard.querySelector('#comment-form');
     const commentsCountElement = document.getElementById(`comments${pokemon.id}`);
-    function renderComments(comments) {
+    const renderComments = (comments) => {
       commentList.innerHTML = '';
       if (comments.length === 0) {
         commentList.innerHTML = '<li>No comments yet.</li>';
@@ -126,17 +131,17 @@ const renderList = async (array) => {
         comments.forEach((comment) => {
           const commentElement = document.createElement('li');
           commentElement.innerHTML = `
-              <span class="font-bold text-yellow-800">${comment.username}:</span> ${comment.comment}
+              <span class="font-bold text-yellow-800">${comment.creation_date} ${comment.username}:</span> ${comment.comment}
               `;
           commentList.appendChild(commentElement);
         });
       }
-    }
-    function updateCommentsCount(pokemonId) {
+    };
+    const updateCommentsCount = (pokemonId) => {
       countComments(pokemonId).then((count) => {
         commentsCountElement.innerHTML = `(${count})`;
       });
-    }
+    };
     commentForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const name = commentForm.querySelector('#comment-name').value;
