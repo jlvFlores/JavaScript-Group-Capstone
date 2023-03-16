@@ -5,6 +5,7 @@ import heartReg from '../assets/icons/heart-regular.svg';
 import xMark from '../assets/icons/xmark-solid.svg';
 import postLike from './postMethods.js';
 import getLikes from './getMethods.js';
+import cardCounter from './cardCounter.js';
 
 const renderList = async (array) => {
   const listContainer = document.getElementById('list');
@@ -107,6 +108,8 @@ const renderList = async (array) => {
       likeCounter.innerHTML = await item.likes;
     });
   });
+
+  document.querySelector('.pokemon-nav').innerHTML = `Pokemon(${cardCounter()})`;
 };
 
 export default renderList;

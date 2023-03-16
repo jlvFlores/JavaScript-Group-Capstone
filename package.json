@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "npx stylelint **/*.{css,scss} && npx eslint . && echo everything-looks-good",
+    "test": "jest",
     "fix": "npx stylelint **/*.{css,scss} --fix && npx eslint . --fix && echo everything-fixed",
     "start": "webpack serve --open",
     "build": "webpack"
@@ -33,6 +33,7 @@
     "hint": "^2.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
