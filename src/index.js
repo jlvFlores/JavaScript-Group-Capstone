@@ -19,7 +19,7 @@ displayLogo();
 
 const createList = async () => {
   let globalArray = [];
-  globalArray = await getList(9);
+  globalArray = await getList(0, 10);
   await getInfo(globalArray);
 };
 
