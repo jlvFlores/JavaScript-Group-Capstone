@@ -15,10 +15,9 @@ const renderList = async (array) => {
   const likes = await getLikes();
 
   array.forEach((pokemon) => {
-    let itemId = 0;
     let itemLikes = 0;
-    if (likes.find(({ item_id }) => item_id === pokemon.id)) {
-      itemId = likes.find(({ item_id }) => item_id === pokemon.id);
+    const itemId = likes.find(({ item_id }) => item_id === pokemon.id);
+    if (itemId) {
       itemLikes = itemId.likes;
     }
     listContainer.insertAdjacentHTML('beforeend', `
