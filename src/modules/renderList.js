@@ -129,6 +129,7 @@ const renderList = async (array) => {
       } else {
         comments.forEach((comment) => {
           const commentElement = document.createElement('li');
+          commentElement.classList.add('comments-counter');
           commentElement.innerHTML = `
               <span class="font-bold text-yellow-800">${comment.creation_date} ${comment.username}:</span> ${comment.comment}
               `;
