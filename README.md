@@ -34,7 +34,7 @@
 
 > The first main boss of this program.
 
-**[JavaScript-Group-Capstone]** is a project that reenforces the concepts learned throught the first two modules of the Microverse program. Developed as a group by Nestor Néstor Fabián Oro Álvarez and Jose Luis Vazquez Flores. If you're interested in knowing more about our thought process through the project, you can check out our [loom video](). *missing*
+**[JavaScript-Group-Capstone]** is a project that reenforces the concepts learned throught the first two modules of the Microverse program. Developed as a group by Nestor Néstor Fabián Oro Álvarez and Jose Luis Vazquez Flores. If you're interested in knowing more about our thought process through the project, you can check out our [video](https://drive.google.com/file/d/1-agCF-oinsFSyw6VIi13bIo6fgBElPSz/view). 
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -48,14 +48,17 @@
     <li><p>HTML</p></li>
     <li><p>CSS</p></li>
     <li><p>ES6</p></li>
-    <li><p>*missing*</p></li>
+    <li><p>TailwindCSS</p></li>
+    <li><p>Webpack</p></li>
+    <li><p>Flowbite</p></li>
+    <li><p>JEST</p></li>
   </ul>
 </details>
 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://jlvflores.github.io/JavaScript-Group-Capstone/">GitHub Pages</a></li>*verify*
+    <li><a href="https://jlvflores.github.io/JavaScript-Group-Capstone/dist/">GitHub Pages</a></li>
   </ul>
 </details>
 
@@ -79,7 +82,7 @@
 
 > Here is a link to the demo project.
 
-- With the use of [GitHub pages](https://jlvflores.github.io/JavaScript-Group-Capstone/) *missing*
+- With the use of [GitHub pages](https://jlvflores.github.io/JavaScript-Group-Capstone/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -7,8 +7,7 @@
     "test": "jest",
     "fix": "npx stylelint **/*.{css,scss} --fix && npx eslint . --fix && echo everything-fixed",
     "start": "webpack serve --open",
-    "build": "webpack",
-    "deploy": "gh-pages -d dist"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
