@@ -116,7 +116,7 @@ To run tests, run the following command: `npm start`
 
 ### Deployment
 
-You can deploy this project using:  Using [GitHub pages](https://jlvflores.github.io/JavaScript-Group-Capstone/)
+You can deploy this project using:  Using [GitHub pages](https://jlvflores.github.io/JavaScript-Group-Capstone/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
