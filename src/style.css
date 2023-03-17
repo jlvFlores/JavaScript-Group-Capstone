@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Lato";
+  src: url('./assets/font/Lato-Light.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.logo {
+  width: 10rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #48bb78;
+  margin: 10px 4px 4px 10px;
+  border-radius: 10px;
+  opacity: 85%;
+  padding: 10px;
+  height: 35vw;
+}
+
+.nav-list {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
+}
+
+.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+#list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 2rem;
+  margin: 2rem;
+}
+
+footer {
+  padding: 5px;
+  font-style: italic;
+  font-weight: bold;
+  background-color: #48bb78;
+  height: 50px;
+  margin: -25px 4px 4px 10px;
+  border-radius: 10px;
+  opacity: 80%;
+}
+
+.like-con {
+  position: relative;
+}
+
+.likes {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.card {
+  background-color: #48bb78;
+  opacity: 90%;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.2s ease-in-out;
+  resize: none;
+}
+
+.form-textarea {
+  height: 50px;
+  width: 130px;
+}
+
+.form-input {
+  width: 130px;
+  height: 30px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #f6ad55;
+}
+
+.btn {
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #f6ad55;
+  border-color: #f6ad55;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #ed8936;
+  border-color: #ed8936;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 3px rgba(246, 173, 85, 0.4);
+}
+
+@media only screen and (min-width: 768px) {
+  nav {
+    height: 10vw;
+  }
+
+  .pokemon-nav {
+    font-size: 29px;
+    left: 250px;
+    position: relative;
+  }
+
+  .logo {
+    position: relative;
+    left: 50px;
+    width: 20vw;
+  }
+
+  #list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 3rem;
+    margin: 4rem;
+  }
+
+  .form-textarea {
+    height: 90px;
+    width: 180px;
+  }
+
+  .form-input {
+    width: 182px;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+}
